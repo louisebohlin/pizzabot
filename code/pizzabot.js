@@ -12,12 +12,39 @@ const pizzaType = [vegetarian, hawaiian, pepperoni]
 
 const orderName = prompt("Enter the name of the pizza you want to order today.")
 
-const orderQuantity = prompt("How many of " + orderName +" do you want?")
-
-const calculateOrderTotal = () => {
-  return orderQuantity * pizzaPrice
+const checkPizza = (theOrderName) => {
+  if (theOrderName != vegetarian && theOrderName != hawaiian && theOrderName != pepperoni) {
+    alert("Sorry, we don't have that pizza on our menu.")
+    return false
+  } else {
+    return true
+  }
 }
 
-const orderTotal = calculateOrderTotal()
+const res = checkPizza(orderName) // res = true eller false
 
-alert("Great, I'll get started on your " + orderName + " right away, it will cost " + orderTotal + " kr")
+
+if(res){
+  const orderQuantity = prompt("How many of " + orderName +" do you want?")
+
+  const calculateOrderTotal = () => {
+    return orderQuantity * pizzaPrice
+  }
+
+  const orderTotal = calculateOrderTotal()
+
+  const calculateCookingTime = () => {
+    if (orderQuantity <= 2) {
+      return (10)
+  } else if (orderQuantity >= 6) {
+      return (20)
+  } else {
+      return (15)
+  }
+}
+
+  const cookingTime = calculateCookingTime()
+
+alert("Great, I'll get started on your " + orderName + " right away. It will cost " + orderTotal + " kr. The pizzas will take " + cookingTime + " min.")
+
+}
